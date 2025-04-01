@@ -214,9 +214,9 @@ static spindle_state_t spindleGetState (spindle_ptrs_t *spindle)
     return vfd_state; // return previous state as we do not want to wait for the response
 }
 
-static float f2rpm (uint16_t f)
+static float f2rpm (int16_t f)
 {
-    return (float)f * (vfd_config.out_multiplier / vfd_config.out_divider);
+    return (float)abs(f) * (vfd_config.out_multiplier / vfd_config.out_divider);
 }
 
 static void rx_packet (modbus_message_t *msg)
